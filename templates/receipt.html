@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>House Billing System - Receipt</title>
+    <link rel="stylesheet" type="text/css" href="style.css" />
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        padding: 20px;
+      }
+
+      h1 {
+        text-align: center;
+      }
+
+      h2 {
+        margin-bottom: 10px;
+      }
+
+      #receipt {
+        width: 300px;
+        padding: 20px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        background-color: #f9f9f9;
+      }
+
+      p {
+        margin-bottom: 10px;
+      }
+
+      button {
+        margin-top: 20px;
+        padding: 10px 15px;
+        background-color: #4caf50;
+        color: white;
+        border: none;
+        border-radius: 3px;
+        cursor: pointer;
+      }
+
+      button:hover {
+        background-color: #45a049;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="receipt">
+      <h1>House Billing System</h1>
+      <h2>Receipt</h2>
+
+      <p><strong>Transaction ID:</strong></p>
+      <p><strong>Date:{{now()}}</strong></p>
+      <p><strong>Time:{{now()}}</strong></p>
+      <p><strong>Amount Paid:{{Amount}}</strong></p>
+      <p><strong>Balance:</strong></p>
+      <p><strong>Phone Number:</strong></p>      
+    </div>
+
+    <button onclick="printReceipt()">Print Receipt</button>
+
+    <script>
+      function printReceipt() {
+        window.print();
+      }
+    </script>
+  </body>
+</html>
