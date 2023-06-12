@@ -2,6 +2,7 @@ from flask import Flask, render_template, request, redirect, url_for, flash, ses
 from werkzeug.security import generate_password_hash
 from flask_sqlalchemy import SQLAlchemy
 from functools import wraps
+from models import * 
 import os
 
 from connections import DBase
@@ -24,13 +25,8 @@ def before_request():
 def teardown_request(exception=None):
     global Dbconnection
     if Dbconnection is not None:
-        Dbconnection.close()
         Dbconnection = None
 
-@app.before_first_request
-def create_tables():
-    db.create_all()
-    seeding()
 
 def login_required(f):
     @wraps(f)
@@ -44,24 +40,26 @@ def login_required(f):
 
 
 
-@app.route('/', method=['GET','POST'])
+@app.route('/')
 def Register():
+    return render_template('register.html')
     if request.method == 'POST':
         # Perform user sign-up and store the user details in the database
         username = request.form['username']
-        user_password = request.form['password']
+        password = request.form['password']
+
         
         connection = DBase.Connect()
         cursor = DBase.Cursor(connection)
         query = '''insert into public.users(username,password) values (%s,%s)'''
         try:
-            cursor.execute(query,(username,user_password))
+            cursor.execute(query,(username,password))
             connection.commit()
             flash('Sign up successful. Please log in.')
             return redirect(url_for('login'))
         except psycopg2.Error as e:
             print(e)
-    return render_template('register.html')
+        return
 
 @app.route('/Home_dashboard')
 def dashboard():

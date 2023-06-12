@@ -29,7 +29,7 @@
       <div class="container">
         <div class="row wow fadeIn">
           <div class="col-md-6 mb-4 white-text text-center text-md-left">
-            <h1 class="display-4 font-weight-bold">HMS sign-up</h1>
+            <h1 class="display-4 font-weight-bold">Pumwani Estates signup</h1>
             <hr class="hr-light">
             <a href="{{url_for('login')}}" class="btn btn-lg btn-primary btn-block">Log In</a>
           </div>
@@ -38,7 +38,6 @@
             <div class="card">
               <div class="card-body">
                 <!-- alert -->
-                {% include '/includes/alert.html' %}
                 <form action="/register" method="POST">
                   <p class="h4 text-center mb-4">Sign up</p>
                   <div class="md-form">
@@ -53,8 +52,8 @@
                   </div>
                   <div class="md-form">
                     <i class="fa fa-user prefix grey-text"></i>
-                    <input type="text" name="department" id="materialFormRegisterNameEx" class="form-control">
-                    <label for="materialFormRegisterNameEx">Department</label>
+                    <input type="text" name="housenumber" id="materialFormRegisterNameEx" class="form-control">
+                    <label for="materialFormRegisterNameEx">House-number</label>
                   </div>
                   
                   <div class="md-form">
@@ -107,6 +106,7 @@
                         </div>
                       </div>
                     </div>
+                  </div>
                 </form>
               </div>
             </div>
