@@ -1,28 +1,36 @@
 import psycopg2
 from psycopg2.extras import RealDictCursor
-import os
+import os 
 
-connection=None
-class Dbase:
-  def connection(dbconnection):
-      try:
-        connection=psycopg2.connect(
-          database=os.getenv('trials'),
-          user=os.getenv('postgres'),
-          password=os.getenv('Ssebugenyijuma95'),
-          port_id=os.getenv('5432')
-        )
-      except psycopg2.Error as e:
-        print(e)
-      return dbconnection
+host='localhost'
+user='postgres'
+database='wifi_connections'
+password='Ssebugenyijuma95'
+port_id=5432
+
+
+class DBase:
+    # db connection
+    def Connect():
+        connection = ''
+        try:
+            connection = psycopg2.connect(
+            database=os.getenv('database'), 
+            user=os.getenv('user'), 
+            host=os.getenv('host'), 
+            port= os.getenv('port_id'),
+            password=os.getenv("password")
+            )
+        except psycopg2.Error as e:
+            print(e)
+        return connection
     
-
-  def cursor(Dbconnection):
-
-    try:
-      cursor=Dbconnection.cursor(cursor_factory=RealDictCursor)
-    except:
-      print("unable to connect cursor")
-    return 
-
+    # db cursor 
+    def Cursor(dbconnection):
+        cursor = ''
+        try:
+            cursor = dbconnection.cursor(cursor_factory=RealDictCursor)
+        except:
+            print("unable to create cursor")
+        return cursor
    

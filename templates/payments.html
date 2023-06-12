@@ -1,78 +1,9 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <title>House Billing System</title>
-    <link rel="stylesheet" type="text/css" href="style.css" />
-    <style>
-      body {
-        font-family: Arial, sans-serif;
-        padding: 20px;
-      }
-
-      h1 {
-        text-align: center;
-      }
-
-      h2 {
-        margin-bottom: 10px;
-      }
-
-      form {
-        margin-top: 20px;
-        width: 300px;
-        padding: 20px;
-        border: 1px solid #ccc;
-        border-radius: 5px;
-        background-color: #f9f9f9;
-      }
-
-      label {
-        display: block;
-        margin-bottom: 5px;
-      }
-
-      input[type="number"],
-      input[type="text"] {
-        width: 100%;
-        padding: 5px;
-        margin-bottom: 10px;
-        border-radius: 3px;
-        border: 1px solid #ccc;
-      }
-
-      input[type="submit"] {
-        background-color: #4caf50;
-        color: white;
-        padding: 10px 15px;
-        border: none;
-        border-radius: 3px;
-        cursor: pointer;
-      }
-
-      input[type="submit"]:hover {
-        background-color: #45a049;
-      }
-    </style>
-  </head>
-  <body>
-    <h1>
-      <li>House Billing Online System <br /></li>
-      <li>Nidaamka Biil Bixinta</li>
-    </h1>
-
-    <h2>
-      <li>Make Payment <br /></li>
-      <li>Bixi Lacagta</li>
-    </h2>
-
-    <form action="process_payment.php" method="post">
-      <label for="amount">Amount:</label>
-      <input type="number" name="amount" id="amount" required />
-
-      <label for="phone">Phone Number:</label>
-      <input type="text" name="phone" id="phone" required />
-
-      <input type="submit" value="Pay with M-Pesa" />
-    </form>
-  </body>
-</html>
+{%extends "base.html"%}
+{%block content%}
+<form>
+  <div class="form-group">
+    <label for="username">username</label>
+    <input type="text" class="form-control" id="username" placeholder="Enter username">
+  </div>
+</form>
+{%endblock%}

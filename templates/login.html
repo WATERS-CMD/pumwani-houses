@@ -1,105 +1,143 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <title>PUMWANI ESTATE PAYMENT SYSTEM</title>
-    <link
-      rel="icon"
-      href="pumwani.jpg"
-      type="image/x-icon"
-      <link
-      rel="stylesheet"
-      type="text/css"
-      href="style.css"
-    />
-    <style>
-      body {
-        font-family: Arial, sans-serif;
-        background-color: #f4f4f4;
-        margin: 0;
-        padding: 0;
-        background-image: linear-gradient(pink, grey);
-      }
+<html lang="en">
 
-      .container {
-        max-width: 400px;
-        margin: 0 auto;
-        padding: 20px;
-        background-color: #fff;
-        border-radius: 5px;
-        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        margin-top: 15%;
-      }
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-      h1 {
-        text-align: center;
-      }
 
-      form {
-        margin-top: 20px;
-      }
+    <!------ Include the above in your HEAD tag ---------->
+    <!-- <link href="//netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script> -->
 
-      label {
-        display: block;
-        margin-bottom: 8px;
-      }
+    <!-- bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous" />
 
-      input[type="text"],
-      input[type="password"] {
-        width: 100%;
-        padding: 10px;
-        border: 1px solid #ccc;
-        border-radius: 4px;
-        box-sizing: border-box;
-      }
+    <!-- bootsnipp home cards stuff -->
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet"
+        id="bootstrap-css" />
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
-      input[type="submit"] {
-        width: 100%;
-        padding: 10px;
-        background-color: #4caf50;
-        color: #fff;
-        border: none;
-        border-radius: 4px;
-        cursor: pointer;
-      }
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" />
+    <link rel="stylesheet" href="/static/css/home_cards.css" />
 
-      input[type="submit"]:hover {
-        background-color: #45a049;
-      }
-      #system_name {
-        font-size: 2.5em;
-        font-style: oblique;
-        color: darkslategray;
-        text-align: center;
-      }
-    </style>
-  </head>
-  <body>
-    <h1 id="system_name">PUMWANI ESTATE ONLINE PAYMENT SYSTEM</h1>
+    <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+
+    <link rel="stylesheet" href="/static/css/login.css" />
+
+    <title>Login</title>
+</head>
+
+<body>
     <div class="container">
-      <h1>Login</h1>
-      <form>
-        <label for="username">Username</label>
-        <input
-          type="text"
-          id="username"
-          name="username"
-          placeholder="Enter your username"
-        />
-        <label for="password">Password</label>
-        <input
-          type="password"
-          id="password"
-          name="password"
-          placeholder="Enter your password"
-        />
-        <label>
-          Remember Me
-          <input type="checkbox" name="Remember Me" />
-        </label>
-        <h5><a href="">Forgotten The Password</a></h5>
 
-        <input type="submit" value="Login" />
-      </form>
+        <div class="row mx-auto py-3" style="margin-top:150px; width: 500px;">
+            <div class="col-xs-12 col-sm-8 col-md-12 col-sm-offset-2 col-md-offset-3">
+                <!-- alert -->
+                {%includes alert.html%}
+                <form action="/login" method="POST" role="form">
+                    <fieldset>
+                        <h2>Please Sign In</h2>
+                        <hr class="colorgraph">
+                        <div class="form-group">
+                          <input type="text" name="username" id="username" class="form-control input-lg"
+                              placeholder="user_name">
+                      </div>
+                        <div class="form-group">
+                            <input type="email" name="email" id="email" class="form-control input-lg"
+                                placeholder="Email Address">
+                        </div>
+                        <div class="form-group">
+                            <input type="password" name="password" id="password" class="form-control input-lg"
+                                placeholder="Password">
+                        </div>
+                        <span class="button-checkbox">
+                            <input type="checkbox" name="remember_me" id="remember_me" checked="checked" class="hidden">
+                            <button type="button" class="btn" data-color="info">Remember Me</button>
+                            <!-- <a href="" class="btn btn-link pull-right">Forgot Password?</a> -->
+                        </span>
+                        <hr class="colorgraph">
+                        <div class="row">
+                            <div class="col-xs-6 col-sm-6 col-md-6">
+                                <input type="submit" class="btn btn-lg btn-success btn-block" value="Sign In">
+                            </div>
+                            <div class="col-xs-6 col-sm-6 col-md-6">
+                                <a href="/register" class="btn btn-lg btn-primary btn-block">Register</a>
+                            </div>
+                        </div>
+                    </fieldset>
+                </form>
+            </div>
+        </div>
+
     </div>
-  </body>
+
+    <script>
+        $(function () {
+            $('.button-checkbox').each(function () {
+                var $widget = $(this),
+                    $button = $widget.find('button'),
+                    $checkbox = $widget.find('input:checkbox'),
+                    color = $button.data('color'),
+                    settings = {
+                        on: {
+                            icon: 'glyphicon glyphicon-check'
+                        },
+                        off: {
+                            icon: 'glyphicon glyphicon-unchecked'
+                        }
+                    };
+
+                $button.on('click', function () {
+                    $checkbox.prop('checked', !$checkbox.is(':checked'));
+                    $checkbox.triggerHandler('change');
+                    updateDisplay();
+                });
+
+                $checkbox.on('change', function () {
+                    updateDisplay();
+                });
+
+                function updateDisplay() {
+                    var isChecked = $checkbox.is(':checked');
+                    // Set the button's state
+                    $button.data('state', (isChecked) ? "on" : "off");
+
+                    // Set the button's icon
+                    $button.find('.state-icon')
+                        .removeClass()
+                        .addClass('state-icon ' + settings[$button.data('state')].icon);
+
+                    // Update the button's color
+                    if (isChecked) {
+                        $button
+                            .removeClass('btn-default')
+                            .addClass('btn-' + color + ' active');
+                    }
+                    else {
+                        $button
+                            .removeClass('btn-' + color + ' active')
+                            .addClass('btn-default');
+                    }
+                }
+                function init() {
+                    updateDisplay();
+                    // Inject the icon if applicable
+                    if ($button.find('.state-icon').length == 0) {
+                        $button.prepend('<i class="state-icon ' + settings[$button.data('state')].icon + '"></i> ');
+                    }
+                }
+                init();
+            });
+        });
+    </script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0"
+        crossorigin="anonymous"></script>
+</body>
+
 </html>

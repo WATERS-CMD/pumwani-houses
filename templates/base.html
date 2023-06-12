@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta Charset="UTF-8">
+    <meta http-eqiv="X-U-compatible" content="IE=Edge">
+    <meta name="viewpoint" content="width=device-width, intial-scale=0.9">
+    <title>Pumwani payment System</title>
+    <link name="icon" src="pumwani.jpg" rel="X">
+    <link rel="stylesheet" href="static/bootstrap.css">
+    <link href="https://cdn.datatables.net/1.10.24/css/jquery.dataTables.min.css" rel="stylesheet" />
+      <!-- bootsnipp home cards stuff -->
+  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet"
+  id="bootstrap-css" />
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" />
+<link rel="stylesheet" href="/static/css/home_cards.css" />
+<link rel="stylesheet" href="/static/css/styles.css" />
+
+<!-- fullcalendar -->
+<script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.8.0/main.min.js"
+  integrity="sha256-AOrsg7pOO9zNtKymdz4LsI+KyLEHhTccJrZVU4UFwIU=" crossorigin="anonymous"></script>
+
+<meta charset='utf-8' />
+<link href='fullcalendar/main.css' rel='stylesheet' />
+<script src='fullcalendar/main.js'></script>
+<script>
+
+  document.addEventListener('DOMContentLoaded', function () {
+    var calendarEl = document.getElementById('calendar');
+    var calendar = new FullCalendar.Calendar(calendarEl, {
+      initialView: 'dayGridMonth'
+    });
+    calendar.render();
+  });
+
+</script>
+  </head>
+  <body>
+    <div class="container">
+      <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="/" style="font-weight: 800; font-size: 24px;">Pumwani<span
+              style="color: rgb(146, 31, 31);">Payment system</style></a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+              <li class="nav-item">
+                <a class="nav-link active link-button m-2" aria-current="page" href="{{url_for('Home_dashboard')}}">Home</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link active link-button m-2" aria-current="page" href="{{url_for('tenants')}}">Tenants</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link active link-button m-2" aria-current="page" href="{{url_for('payments')}}">Payments</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link active link-button m-2" aria-current="page" href="{{url_for('transactions')}}">Transactions</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link active link-button m-2" aria-current="page" href="{{url_for('property')}}">Property</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link active link-button m-2" aria-current="page" href="{{url_for('receipts')}}">Receipts</a>
+              </li>
+            </ul>
+          </div>
+          <div>
+            {% if logged_in %}
+             <i class="fas"> Signed in as: {{ first_name }} {{ last_name }}</i>
+            {% endif %}
+          </div>
+          <div><a class="nav-link active btn btn-info text-light link-button m-2 me-auto" aria-current="page" href="{{url_for('logout')}}">Log Out</a>
+          </div>
+        </div>
+      </nav>
+    </div>
+  
+    <div class="container">{% block content %}{% endblock %}</div>
+  
+    <!-- datatables -->
+    <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
+      crossorigin="anonymous"></script>
+    <script src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.min.js"></script>
+    <script>
+      $(document).ready(function () {
+        $("#myTable").DataTable();
+      });
+    </script>
+  
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0"
+      crossorigin="anonymous"></script>
+  </body>
+</html>
