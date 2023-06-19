@@ -20,5 +20,4 @@ class RegisterUser:
     self.house_number=house_number
     self.phone_contact=phone_contact
 
-  if method=="POST":
-    username=request.form()
+ 
