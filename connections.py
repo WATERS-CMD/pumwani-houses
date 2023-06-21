@@ -32,6 +32,8 @@ try:
     for records in cur.fetchall():
         print(records[0],records[1])
 
+    
+
     conn.commit()
 except Exception as error:
     print(error)

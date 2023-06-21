@@ -1,34 +1,26 @@
 {%extends "base.html"%}
 {% block content %}
+<h1>These are the recent transactions made.</h1>
 <!-- On tables -->
-<table class="table-primary">{{}}</table>
-<table class="table-secondary">{{}}</table>
-<table class="table-success">{{}}</table>
-<table class="table-danger">{{}}</table>
-<table class="table-warning">{{}}</table>
-<table class="table-info">{{}}</table>
-<table class="table-light">{{}}</table>
-<table class="table-dark">{{}}</table>
-
-<!-- On rows -->
-<tr class="table-primary">{{}}</tr>
-<tr class="table-secondary">{{}}</tr>
-<tr class="table-success">{{}}</tr>
-<tr class="table-danger">{{}}</tr>
-<tr class="table-warning">{{}}</tr>
-<tr class="table-info">{{}}</tr>
-<tr class="table-light">{{}}</tr>
-<tr class="table-dark">{{}}</tr>
-
-<!-- On cells (`td` or `th`) -->
-<tr>
-  <td class="table-primary">{{}}</td>
-  <td class="table-secondary">{{}}</td>
-  <td class="table-success">{{}}</td>
-  <td class="table-danger">{{}}</td>
-  <td class="table-warning">{{}}</td>
-  <td class="table-info">{{}}</td>
-  <td class="table-light">{{}}</td>
-  <td class="table-dark">{{}}</td>
-</tr>
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">No.</th>
+      <th scope="col">Firstname</th>
+      <th scope="col">Lastname</th>
+      <th scope="col">Amount Paid</th>
+      <th scope="col">Transaction Id</th>
+      <th scope="col">Date of payment</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th scope="row">{{id}}</th>
+      <td>{{firstname}}</td>
+      <td>{{lastname}}</td>
+      <td>{{amount}}</td>
+      <td>{{transaction_id}}</td>
+      <td>{{date}}</td>
+    </tr>
+  </tbody>
 {%endblock%}
