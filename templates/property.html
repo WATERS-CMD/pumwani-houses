@@ -1,32 +1,73 @@
 {%extends "base.html"%}
 {% block content %}
-  <form action={{url for('property')}} methods=["POST","GET"]>
+  <form action="/property" methods=["POST","GET"]>
     <div>
-      <h1>Pumwani Estates tenant Property Management Page</h1>
+      <h1>Pumwani Estates Tenant Property Management Page</h1>
       <strong>Hint:</strong>
       <p>This page basically deals with automotives.</p>
     </div>
-    <div>
-      <button class="btn btn-primary" type="submit" data-toggle="modal"
-      data-target="#myModal">Add new property</button>
+    
+    <div class="modal" tabindex="-1">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title">Add New Property</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+              <div class="modal-body">
+                <form action="/property" methods="POST">
+                  <div class="mb-3">
+                    <label for="firstname" class="form-label">First name</label>
+                    <input type="text" class="form-control" id="firstname">
+                  </div>
+                  <div class="mb-3">
+                    <label for="lastname" class="form-label">Lastname</label>
+                    <input type="text" class="form-control" id="lastname">
+                  </div>
+                  <div class="mb-3">
+                    <label for="car_type" class="form-label">Car type</label>
+                    <input type="text" class="form-control" id="car_type">
+                  </div>
+                  <div class="mb-3">
+                    <label for="car_model" class="form-label">Car model</label>
+                    <input type="text" class="form-control" id="car_model">
+                  </div>
+                  <div class="mb-3">
+                    <label for="car_plate" class="form-label">Car plate</label>
+                    <input type="text" class="form-control" id="car_plate">
+                  </div>
+                </form>
+              </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+              <button type="button" class="btn btn-primary">Save changes</button>
+            </div>
+          </div>
+        </div>
     </div>
+    
     <div>
       <table>
-        <tr>
-          <td>Name</td>
-          <td>House Number</td>
-          <td>Car Plate</td>
-          <td>Model</td>
-          <td>Car type</td>
-        </tr>
-        <tr>
-          <td>{{username}}</td>
-          <td>{{House Number}}</td>
-          <td>{{Car Plate}}</td>
-          <td>{{Model}}</td>
-          <td>{{Car type}}</td>
-        </tr>
-      </table>
-    </div>
+        <table class="table">
+          <thead>
+            <tr>
+              <th scope="col">No.</th>
+              <th scope="col">Firstname</th>
+              <th scope="col">Lastname</th>
+              <th scope="col">Car type</th>
+              <th scope="col">Car model</th>
+              <th scope="col">Car plate</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th scope="row">{{id}}</th>
+              <td>{{firstname}}</td>
+              <td>{{lastname}}</td>
+              <td>{{car_type}}</td>
+              <td>{{car_model}}</td>
+              <td>{{car_plate}}</td>
+            </tr>
+          </tbody>
 </form>
 {%endblock%}

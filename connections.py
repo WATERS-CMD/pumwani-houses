@@ -32,7 +32,42 @@ try:
     for records in cur.fetchall():
         print(records[0],records[1])
 
-    
+    create_payment='''
+        CREATE TABLE IF NOT EXISTS payments(
+            id SERIAL PRIMARY KEY,
+            userid INT FOREIGN KEY(userid) REFERENCE users(id),
+            amount FLOAT(.2),
+            transaction_ref varchar(20),
+            date DATETIME)'''
+    cur.execute(create_payment)
+
+    insert_script='INSERT INTO payments(id, userid,amount,transaction_ref,date) VALUES(%s,%s,%s,%s,%s)'
+    insert_values=[]
+    for record in insert_values:
+        cur.execute(insert_script, record)
+
+    cur.execute('SELECT * FROM payments')
+    for records in cur.fetchall():
+        print(records[0],records[1])
+
+
+    create_property='''
+        CREATE TABLE IF NOT EXISTS property(
+            id SERIAL PRIMARY KEY,
+            userid INT FOREIGN KEY(userid) REFERENCE users(id),
+            car_type varchar(20),
+            car_model varchar(20),
+            car_plate varchar(20))'''
+    cur.execute(create_property)
+
+    insert_script='INSERT INTO payments(id, userid,car_type,car_model,car_plate) VALUES(%s,%s,%s,%s,%s)'
+    insert_values=[]
+    for record in insert_values:
+        cur.execute(insert_script, record)
+
+    cur.execute('SELECT * FROM property')
+    for records in cur.fetchall():
+        print(records[0],records[1])
 
     conn.commit()
 except Exception as error:
