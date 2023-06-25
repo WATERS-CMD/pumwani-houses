@@ -41,33 +41,38 @@ try:
             date DATETIME)'''
     cur.execute(create_payment)
 
-    insert_script='INSERT INTO payments(id, userid,amount,transaction_ref,date) VALUES(%s,%s,%s,%s,%s)'
+    insert_script='INSERT INTO payment(userid,amount,transaction_ref,date) VALUES(%s,%s,%s,%s)'
     insert_values=[]
     for record in insert_values:
         cur.execute(insert_script, record)
 
     cur.execute('SELECT * FROM payments')
-    for records in cur.fetchall():
-        print(records[0],records[1])
+    payment=cur.fetchall()
+    # for records in cur.fetchall():
+    #     print(records[0],records[1])
 
 
     create_property='''
         CREATE TABLE IF NOT EXISTS property(
             id SERIAL PRIMARY KEY,
-            userid INT FOREIGN KEY(userid) REFERENCE users(id),
+            firstname varchar(20),
+            lastname varchar(20),
             car_type varchar(20),
             car_model varchar(20),
             car_plate varchar(20))'''
     cur.execute(create_property)
+    conn.commit()
 
-    insert_script='INSERT INTO payments(id, userid,car_type,car_model,car_plate) VALUES(%s,%s,%s,%s,%s)'
+    insert_script='INSERT INTO property(firstname,lastname,car_type,car_model,car_plate) VALUES(%s,%s,%s,%s,%s)'
     insert_values=[]
     for record in insert_values:
         cur.execute(insert_script, record)
 
     cur.execute('SELECT * FROM property')
-    for records in cur.fetchall():
-        print(records[0],records[1])
+    data=cur.fetchall()
+
+    # for records in cur.fetchall():
+    #     print(records[0],records[1])
 
     conn.commit()
 except Exception as error:

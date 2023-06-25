@@ -1,39 +1,70 @@
 {%extends "base.html"%}
 {%block content%}
-  <div class="container">
-    <div class="row">
-      <div class="col-md-3">
-        <div class="card-counter danger">
-          <i class="fa fa-users"></i>
-          <span class="count-numbers">{{ tenant }}</span>
-          <span class="count-name">Tenants</span>
-        </div>
-      </div>
+<h1>Pumwani Estate Payment System - Admin Dashboard</h1>
 
-      <div class="col-md-3">
-        <div class="card-counter success">
-          <i class="fa fa-users"></i>
-          <span class="count-numbers">{{ property_count}}</span>
-          <span class="count-name">Property</span>
-        </div>
-      </div>
-
-      <div class="col-md-3">
-        <div class="card-counter primary">
-          <i class="fa fa-users"></i>
-          <span class="count-numbers">{{ transactions }}</span>
-          <span class="count-name">Transactions</span>
-        </div>
-      </div>
-
-      <div class="col-md-3">
-        <div class="card-counter success">
-          <i class="fa fa-users"></i>
-          <span class="count-numbers">{{ staff_count }}</span>
-          <span class="count-name">Staff</span>
-        </div>
-      </div>
-    </div>
+<div class="paid-users">
+  <h2>Paid Users</h2>
+  <div>
+    <table>
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">No.</th>
+            <th scope="col">Firstname</th>
+            <th scope="col">Lastname</th>
+            <th scope="col">Total amount</th>
+            <th scope="col">Amount paid</th>
+            <th scope="col">Balance</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for payment in payments%}
+          <tr>
+            <th scope="row">{{row[0]}}</th>
+            <td>{{row[1]}}</td>
+            <td>{{row[2]}}</td>
+            <td>{{total_amount}}</td>
+            <td>{{row[3]}}</td>
+            <td>{{balance}}</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+        </table>
+    </table>
   </div>
+</div>
+
+<hr>
+
+<div>
+  <h3>People with cars</h3>
+  <table>
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">No.</th>
+          <th scope="col">Firstname</th>
+          <th scope="col">Lastname</th>
+          <th scope="col">Car type</th>
+          <th scope="col">Car model</th>
+          <th scope="col">Car plate</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for property in properties%}
+          <tr>
+            <th scope="row">{{row[0]}}</th>
+            <td>{{row[1]}}</td>
+            <td>{{row[2]}}</td>
+            <td>{{row[3]}}</td>
+            <td>{{row[4]}}</td>
+            <td>{{row[5]}}</td>
+          </tr>
+        {% endfor %}
+      </tbody>
+      </table>
+  </table>
+</div>
+
 
 {%endblock%}

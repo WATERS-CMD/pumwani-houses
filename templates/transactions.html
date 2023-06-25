@@ -14,13 +14,15 @@
     </tr>
   </thead>
   <tbody>
-    <tr>
-      <th scope="row">{{id}}</th>
-      <td>{{firstname}}</td>
-      <td>{{lastname}}</td>
-      <td>{{amount}}</td>
-      <td>{{transaction_id}}</td>
-      <td>{{date}}</td>
-    </tr>
+    {% for payment in payments%}
+      <tr>
+        <th scope="row">{{row[0]}}</th>
+        <td>{{row[1]}}</td>
+        <td>{{row[2]}}</td>
+        <td>{{row[3]}}</td>
+        <td>{{row[4]}}</td>
+        <td>{{row[5]}}</td>
+      </tr>
+    {% endfor %}
   </tbody>
 {%endblock%}

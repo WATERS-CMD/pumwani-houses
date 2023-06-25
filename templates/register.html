@@ -20,6 +20,12 @@
   <link rel="stylesheet" href="/static/css/home_cards.css" />
 
   <title>Register</title>
+  <style>
+    li {
+      background-color:red;
+      color:blue;
+    }
+  </style>
 </head>
 
 <body>
@@ -39,8 +45,17 @@
             <div class="card">
               <div class="card-body">
                 <!-- alert -->
-                <form action="/register" method="POST">
+                <form action="/addperson" method="POST">
                   <p class="h4 text-center mb-4">Sign up</p>
+                  {% with messages = get_flashed_messages() %}
+                    {% if messages %}
+                      <ul class=flashes>
+                        {% for message in messages %}
+                            <li>{{ message }}</li>
+                        {% endfor %}
+                      </ul>
+                    {% endif %}
+                  {% endwith %}
                   <div class="md-form">
                     <i class="fa fa-user prefix grey-text"></i>
                     <input type="text" name="firstname" id="materialFormRegisterNameEx" class="form-control">

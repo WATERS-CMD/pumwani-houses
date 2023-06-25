@@ -1,0 +1,250 @@
+:root {
+  --font-family: "Open Sans", Helvetica, Arial, sans-serif;
+  --primary: #907dda;
+  --primary-dark: darken(#907dda, 4%);
+  --accent: #e5e4ea;
+  --font-light: #e7e6f1;
+  --font-dark: #333;
+  --grey: #BDC4D0;
+  --background-light: #F3F4F8;
+  --background-dark: #2F3032;
+  --border-light: darken(var(--background-light), 2%);
+  --border-dark: darken(var(--background-dark), 2%);
+}
+
+@mixin absolute($top, $left, $right, $bottom) {
+  position: absolute;
+  top: $top;
+  left: $left;
+  right: $right;
+  bottom: $bottom;
+}
+
+@mixin translate($x, $y) {
+  -webkit-transform: translate($x, $y);
+  -webkit-transform: translate3d($x, $y, 0);
+  -ms-transform: translate($x, $y);
+  -ms-transform: translate3d($x, $y, 0);
+  transform: translate($x, $y);
+  transform: translate3d($x, $y, 0);
+}
+
+div, h1, h2, h3, h4, h5, h6, p {
+  font-family: var(--font-family);
+}
+
+html {
+  height: 100%;
+  font-size: 14px;
+}
+
+@media (min-width: 768px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+body {
+  position: relative;
+  min-height: 100%;
+  background: var(--background-dark);
+  box-shadow: inset 0 0 200px rgba(0, 0, 0, 0.1), inset 0 0 20px rgba(0, 0, 0, 0.08);
+}
+
+h1, h2, h3, h4, h5, h6 {
+  margin-top: 0;
+}
+
+h1 {
+  font-size: 2rem;
+  font-weight: 300;
+  line-height: 2.5rem;
+  letter-spacing: 4px;
+}
+
+@media (min-width: 768px) {
+  h1 {
+    font-size: 2.375rem;
+    line-height: 2.75rem;
+  }
+}
+
+p {
+  margin-bottom: 20px;
+  font-size: 1rem;
+  font-weight: 300;
+  letter-spacing: 0.5px;
+  line-height: 1.6rem;
+}
+
+h1 highlight {
+  font-weight: 600;
+  color: var(--primary);
+}
+
+h1 highlight:last-child {
+  margin-bottom: 0;
+}
+
+code {
+  font-size: 0.875rem;
+}
+
+nav.navbar {
+  height: 70px;
+  background: transparent;
+  border: none;
+  transition: background-color 0.3s;
+  will-change: transform;
+}
+
+nav.navbar.show-color {
+  background: white;
+  box-shadow: 0px 6px 16px -2px rgba(0, 0, 0, 0.3);
+}
+
+.navbar-home {
+  visibility: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  opacity: 0;
+  background: var(--background-dark);
+  transition: all 0.3s;
+  will-change: opacity;
+}
+
+.navbar-home.show {
+  visibility: visible;
+  opacity: 1;
+}
+
+.navbar-toggle {
+  display: none;
+}
+
+ul.navbar-nav {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.navbar-nav li {
+  margin-left: 20px;
+}
+
+.navbar-nav a {
+  position: relative;
+  color: var(--font-light);
+  font-weight: 600;
+  text-decoration: none;
+  transition: color 0.3s;
+}
+
+.navbar-nav a:hover, .navbar-nav a:focus {
+  color: var(--primary);
+}
+
+.section {
+  padding: 100px 0;
+}
+
+.section-header {
+  margin-bottom: 40px;
+  text-align: center;
+}
+
+.page-header {
+  margin: 0;
+  padding: 120px 0;
+  color: white;
+  background-color: var(--primary);
+  background-image: linear-gradient(120deg, var(--primary) 0%, var(--primary-dark) 100%);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+}
+
+.page-header h1 {
+  color: white;
+}
+
+.page-header p {
+  color: var(--font-light);
+}
+
+.banner {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  min-height: 400px;
+}
+
+.banner-child {
+  flex: 1;
+  padding: 100px;
+  color: white;
+}
+
+.banner-child.left {
+  background: var(--primary);
+}
+
+.banner-child.right {
+  background: var(--background-dark);
+}
+
+.footer {
+  padding: 50px 0;
+  background: var(--background-dark);
+}
+
+a.tutorials-link {
+  color: var(--font-light);
+  text-decoration: none;
+}
+
+.scrollTop {
+  display: none;
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  width: 40px;
+  height: 40px;
+  background: var(--primary);
+  color: white;
+  text-align: center;
+  line-height: 40px;
+  border-radius: 50%;
+  opacity: 0.7;
+  transition: opacity 0.3s;
+  cursor: pointer;
+}
+
+.scrollTop:hover {
+  opacity: 1;
+}
+
+#home {
+  background: var(--background-light);
+}
+
+#about {
+  background: var(--background-dark);
+  color: white;
+}
+
+#demo {
+  background: var(--background-light);
+}

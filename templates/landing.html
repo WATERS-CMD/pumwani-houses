@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta Charset="UTF-8">
+    <meta http-eqiv="X-U-compatible" content="IE=Edge">
+    <meta name="viewpoint" content="width=device-width, intial-scale=0.9">
+    <title>Pumwani payment System</title>
+    <link name="icon" src="pumwani.jpg" rel="X">
+    <link rel="stylesheet" href="static/bootstrap.css">
+    <link href="https://cdn.datatables.net/1.10.24/css/jquery.dataTables.min.css" rel="stylesheet" />
+      <!-- bootsnipp home cards stuff -->
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet"
+    id="bootstrap-css" />
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" />
+    <link rel="stylesheet" href="/static/css/home_cards.css" />
+    <link rel="stylesheet" href="/static/css/styles.css" />
+
+    <!-- fullcalendar -->
+    <script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.8.0/main.min.js"
+      integrity="sha256-AOrsg7pOO9zNtKymdz4LsI+KyLEHhTccJrZVU4UFwIU=" crossorigin="anonymous"></script>
+
+    <meta charset='utf-8' />
+    <link href='fullcalendar/main.css' rel='stylesheet' />
+    <script src='fullcalendar/main.js'></script>
+    <script>
+
+      document.addEventListener('DOMContentLoaded', function () {
+        var calendarEl = document.getElementById('calendar');
+        var calendar = new FullCalendar.Calendar(calendarEl, {
+          initialView: 'dayGridMonth'
+        });
+        calendar.render();
+      });
+
+    </script>
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <h1>Pumwani Estates</h1>
+      </header>
+      <main>
+        <p>Welcome to Pumwani online sysytem!Enjoy your day and stay.</p>
+        <div>
+          <h3>If you donot have an account. Please tap the buuton below to signup</h3>
+          <div class="col-xs-6 col-sm-6 col-md-6">
+            <a href="{{url_for('register')}}" class="btn btn-lg btn-primary btn-block">Register</a>
+          </div>
+        </div>
+        <div>
+          <h3>
+            If You already Have An Account,Please Login Below:
+          </h3>
+          <a href="{{url_for('login')}}" class="btn btn-lg btn-primary btn-block">Log In</a>
+        </div>
+      </main>
+      <footer>
+        &copy; Copyright 2021 by Ajman technologies. All rights reserved.<br><
+          Created By:ssebugenyimaluufu@gmail.<br>
+            Contact Us On +254794441238<br>
+            Email us at :ajmantech@gmail.com.com<br>
+              Visit our website on www.ajmantech.ac.ke
+
+      </footer>
+    </div>
+  </body>
+</html>

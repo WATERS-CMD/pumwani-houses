@@ -1,73 +1,97 @@
-{%extends "base.html"%}
+{% extends "base.html" %}
 {% block content %}
-  <form action="/property" methods=["POST","GET"]>
-    <div>
-      <h1>Pumwani Estates Tenant Property Management Page</h1>
-      <strong>Hint:</strong>
-      <p>This page basically deals with automotives.</p>
-    </div>
-    
-    <div class="modal" tabindex="-1">
-        <div class="modal-dialog">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h5 class="modal-title">Add New Property</h5>
-              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-              <div class="modal-body">
-                <form action="/property" methods="POST">
-                  <div class="mb-3">
-                    <label for="firstname" class="form-label">First name</label>
-                    <input type="text" class="form-control" id="firstname">
-                  </div>
-                  <div class="mb-3">
-                    <label for="lastname" class="form-label">Lastname</label>
-                    <input type="text" class="form-control" id="lastname">
-                  </div>
-                  <div class="mb-3">
-                    <label for="car_type" class="form-label">Car type</label>
-                    <input type="text" class="form-control" id="car_type">
-                  </div>
-                  <div class="mb-3">
-                    <label for="car_model" class="form-label">Car model</label>
-                    <input type="text" class="form-control" id="car_model">
-                  </div>
-                  <div class="mb-3">
-                    <label for="car_plate" class="form-label">Car plate</label>
-                    <input type="text" class="form-control" id="car_plate">
-                  </div>
-                </form>
-              </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-              <button type="button" class="btn btn-primary">Save changes</button>
-            </div>
-          </div>
+  <div>
+    <h1>Pumwani Estates Tenant Property Management Page</h1>
+    <strong>Hint:</strong>
+    <p>This page basically deals with automotives.</p>
+  </div>
+
+  <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addPropertyModal">
+    Add New Property
+  </button>
+
+  <div class="modal" id="addPropertyModal" tabindex="-1">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Add New Property</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
+        <div class="modal-body">
+          <form action="/addproperty" method="POST">
+            <div class="mb-3">
+              <label for="firstname" class="form-label">First name</label>
+              <input type="text" name="firstname" class="form-control" id="firstname">
+            </div>
+            <div class="mb-3">
+              <label for="lastname" class="form-label">Lastname</label>
+              <input type="text" name="lastname" class="form-control" id="lastname">
+            </div>
+            <div class="mb-3">
+              <label for="car_type" class="form-label">Car type</label>
+              <input type="text" name="car_type" class="form-control" id="car_type">
+            </div>
+            <div class="mb-3">
+              <label for="car_model" class="form-label">Car model</label>
+              <input type="text" name="car_model" class="form-control" id="car_model">
+            </div>
+            <div class="mb-3">
+              <label for="car_plate" class="form-label">Car plate</label>
+              <input type="text" name="car_plate" class="form-control" id="car_plate">
+            </div>
+            <button type="submit" class="btn btn-primary">Save</button>
+          </form>
+        </div>
+      </div>
     </div>
-    
-    <div>
-      <table>
-        <table class="table">
-          <thead>
-            <tr>
-              <th scope="col">No.</th>
-              <th scope="col">Firstname</th>
-              <th scope="col">Lastname</th>
-              <th scope="col">Car type</th>
-              <th scope="col">Car model</th>
-              <th scope="col">Car plate</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <th scope="row">{{id}}</th>
-              <td>{{firstname}}</td>
-              <td>{{lastname}}</td>
-              <td>{{car_type}}</td>
-              <td>{{car_model}}</td>
-              <td>{{car_plate}}</td>
-            </tr>
-          </tbody>
-</form>
-{%endblock%}
+  </div>
+
+  <div>
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">No.</th>
+          <th scope="col">Firstname</th>
+          <th scope="col">Lastname</th>
+          <th scope="col">Car type</th>
+          <th scope="col">Car model</th>
+          <th scope="col">Car plate</th>
+        </tr>
+      </thead>
+      <tbody>
+        {%for row in data%}
+          <tr>
+            <th scope="row">{{row[0]}}</th>
+            <td>{{row[1]}}</td>
+            <td>{{row[2]}}</td>
+            <td>{{row[3]}}</td>
+            <td>{{row[4]}}</td>
+            <td>{{row[5]}}</td>
+            <td><button class="delete-button" onclick="deleteItem({{ loop.index0 }})">X</button></td>
+          </tr>
+        {%endfor%}
+      </tbody>
+    </table>
+  </div>
+  <script>
+    function deleteItem(index) {
+      if (confirm("Are you sure you want to delete this item?")) {
+         // Send an AJAX request to the server to delete the item with the given index
+         // You can use JavaScript frameworks like Axios or jQuery to handle the AJAX request
+         // Example using Axios:
+         axios.post('/delete', { index: index })
+            .then(function(response) {
+               // Handle the response if necessary
+               console.log(response.data);
+               // Reload the page to update the table
+               location.reload();
+            })
+            .catch(function(error) {
+               // Handle errors if necessary
+               console.error(error);
+            });
+      }
+   }
+  </script>
+
+{% endblock %}

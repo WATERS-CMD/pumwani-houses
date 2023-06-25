@@ -13,6 +13,12 @@ app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://postgres:12345@localhost/p
 app.secret_key = 'qw123eyfknvnfhf356457nkfvfjhfnfyre78777'
 db = SQLAlchemy(app)
 
+hostname='localhost'
+database='pumwani'
+user='postgres'
+password='12345'
+port_id=5432
+
 
 class Users(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -86,14 +92,17 @@ def login_required(f):
 
     return wrap
 
-
 @app.route('/')
-def Register():
+def landing():
+    return render_template('landing.html')
+
+@app.route('/register')
+def register():
     return render_template('register.html')
 
 
-@app.route('/register', methods=['POST', 'GET'])
-def register():
+@app.route('/addperson', methods=['POST', 'GET'])
+def addperson():
     firstname = request.form['firstname']
     lastname = request.form['lastname']
     housenumber = request.form['housenumber']
@@ -134,7 +143,7 @@ def login():
             return redirect('/dashboard')
         else:
             flash('Login failed. Please check your credentials and try again.')
-            return redirect('/login.html')
+            return redirect('/login')
 
     return render_template('login.html')
 
@@ -153,9 +162,55 @@ def receipt():
 def transactions():
     return render_template('transactions.html')
 
+class Property(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    firstname = db.Column(db.String(50))
+    lastname = db.Column(db.String(50))
+    car_type = db.Column(db.String(50))
+    car_model = db.Column(db.String(50))
+    car_plate = db.Column(db.String(20))
+    def __init__(self, **kwargs):
+        super().__init__()
+        for key in kwargs:
+            setattr(self, key, kwargs[key])
+
+        __tablename__ = 'properties'
+
+    def save_property(self):
+        self.save()
+        try:
+            db.session.add(self)
+            db.session.commit()
+        except Exception as e:
+            print(e)
+            raise ValueError('Error occurred while adding property')
+
 @app.route('/property')
 def property():
-    return render_template('property.html')
+    conn = psycopg2.connect(host=hostname, database=database, user=user, password=password)
+    cur=conn.cursor()
+    cur.execute('SELECT * FROM property')
+    data=cur.fetchall()
+    cur.close()
+    conn.close()
+    return render_template('property.html',data=data)     
+# Route to handle the form submission
+@app.route('/addproperty', methods=['POST'])
+def add_property():
+    firstname = request.form['firstname']
+    lastname = request.form['lastname']
+    car_type = request.form['car_type']
+    car_model = request.form['car_model']
+    car_plate = request.form['car_plate']
+
+    # Create a new Property object
+    new_property = Property(firstname=firstname, lastname=lastname, car_type=car_type,car_model=car_model, car_plate=car_plate)
+
+    # Add the new property to the database
+    db.session.add(new_property)
+    db.session.commit()
+
+    return redirect('/property')
 
 
 @app.route('/dashboard.html')
@@ -223,6 +278,7 @@ def process_payment():
         # Store the payment details in the database
         cur.execute("INSERT INTO payments VALUES (?, ?, ?, ?, ?)", (firstname, lastname, transaction_id, amount, date))
         conn.commit()
+       
 
         # Return a success response
         return 'Payment processed successfully'
@@ -248,7 +304,27 @@ def make_payment_request(firstname, lastname, transaction_id, amount, date):
 
     response = requests.post(url, json=payload, headers=headers)
     return response
+@app.route('/delete', methods=['POST'])
+def delete():
+   # Get the index of the item to delete from the request
+   index = int(request.form['index'])
 
+   # Delete the item from the database using the index or any other identifier
+   # Connect to the database
+   conn = psycopg2.connect(host=hostname, database=database, user=user, password=password)
+   cursor = conn.cursor()
+
+   # Execute the delete statement
+   cursor.execute('DELETE FROM your_table WHERE id=?', (index,))  # Replace 'id' with your identifier column
+
+   # Commit the changes
+   conn.commit()
+
+   # Close the database connection
+   conn.close()
+
+   # Return a response indicating the deletion was successful (optional)
+   return 'Item deleted successfully'
 
 @app.errorhandler(403)
 def forbidden(e):
